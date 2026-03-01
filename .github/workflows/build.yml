@@ -133,18 +133,38 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Download .deb artifact
         uses: actions/download-artifact@v4
         with:
           name: tc420-controller-deb
           path: dist/
 
-      - name: Upload .deb to Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ github.event.release.tag_name || github.ref_name }}
-          files: dist/*.deb
-          generate_release_notes: true
-          draft: false
-          prerelease: false
+      - name: Get tag name
+        id: tag
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "TAG=${{ github.event.release.tag_name }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "TAG=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+          fi
 
+      - name: Create release (if tag push)
+        if: github.event_name != 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.tag.outputs.TAG }}" \
+            --title "TC420 Controller ${{ steps.tag.outputs.TAG }}" \
+            --generate-notes \
+            dist/*.deb
+
+      - name: Upload .deb to existing release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload "${{ steps.tag.outputs.TAG }}" \
+            dist/*.deb --clobber
