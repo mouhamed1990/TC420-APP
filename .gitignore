@@ -1,0 +1,50 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyo
+*.pyd
+
+# ===== Virtual Environment =====
+.venv/
+venv/
+env/
+ENV/
+
+# ===== PyInstaller =====
+build/
+dist/
+*.spec
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+Desktop.ini
+.Trash-*
+
+# ===== TC420 App =====
+*.tc420
+!demo_aquarium.tc420
+
+# ===== Distribution =====
+*.deb
+*.rpm
+*.AppImage
+*.snap
+
+# ===== Misc =====
+*.log
+*.bak
+*.tmp
+.env
+.env.local

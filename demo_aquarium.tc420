@@ -1,0 +1,202 @@
+{
+  "modes": [
+    {
+      "name": "Aquarium Jour",
+      "channels": [
+        {
+          "name": "Channel 1",
+          "points": [
+            {
+              "time_minutes": 0,
+              "brightness": 0
+            },
+            {
+              "time_minutes": 360,
+              "brightness": 0
+            },
+            {
+              "time_minutes": 420,
+              "brightness": 30
+            },
+            {
+              "time_minutes": 480,
+              "brightness": 80
+            },
+            {
+              "time_minutes": 720,
+              "brightness": 100
+            },
+            {
+              "time_minutes": 1020,
+              "brightness": 80
+            },
+            {
+              "time_minutes": 1080,
+              "brightness": 30
+            },
+            {
+              "time_minutes": 1140,
+              "brightness": 0
+            },
+            {
+              "time_minutes": 1439,
+              "brightness": 0
+            }
+          ]
+        },
+        {
+          "name": "Channel 2",
+          "points": [
+            {
+              "time_minutes": 0,
+              "brightness": 0
+            },
+            {
+              "time_minutes": 420,
+              "brightness": 0
+            },
+            {
+              "time_minutes": 480,
+              "brightness": 50
+            },
+            {
+              "time_minutes": 720,
+              "brightness": 70
+            },
+            {
+              "time_minutes": 1020,
+              "brightness": 50
+            },
+            {
+              "time_minutes": 1080,
+              "brightness": 0
+            },
+            {
+              "time_minutes": 1439,
+              "brightness": 0
+            }
+          ]
+        },
+        {
+          "name": "Channel 3",
+          "points": [
+            {
+              "time_minutes": 0,
+              "brightness": 0
+            },
+            {
+              "time_minutes": 450,
+              "brightness": 0
+            },
+            {
+              "time_minutes": 510,
+              "brightness": 60
+            },
+            {
+              "time_minutes": 720,
+              "brightness": 90
+            },
+            {
+              "time_minutes": 990,
+              "brightness": 60
+            },
+            {
+              "time_minutes": 1050,
+              "brightness": 0
+            },
+            {
+              "time_minutes": 1439,
+              "brightness": 0
+            }
+          ]
+        },
+        {
+          "name": "Channel 4",
+          "points": []
+        },
+        {
+          "name": "Channel 5",
+          "points": []
+        }
+      ]
+    },
+    {
+      "name": "Mode 2",
+      "channels": [
+        {
+          "name": "Channel 1",
+          "points": []
+        },
+        {
+          "name": "Channel 2",
+          "points": []
+        },
+        {
+          "name": "Channel 3",
+          "points": []
+        },
+        {
+          "name": "Channel 4",
+          "points": []
+        },
+        {
+          "name": "Channel 5",
+          "points": []
+        }
+      ]
+    },
+    {
+      "name": "Mode 3",
+      "channels": [
+        {
+          "name": "Channel 1",
+          "points": []
+        },
+        {
+          "name": "Channel 2",
+          "points": []
+        },
+        {
+          "name": "Channel 3",
+          "points": []
+        },
+        {
+          "name": "Channel 4",
+          "points": []
+        },
+        {
+          "name": "Channel 5",
+          "points": []
+        }
+      ]
+    },
+    {
+      "name": "Mode 4",
+      "channels": [
+        {
+          "name": "Channel 1",
+          "points": []
+        },
+        {
+          "name": "Channel 2",
+          "points": []
+        },
+        {
+          "name": "Channel 3",
+          "points": []
+        },
+        {
+          "name": "Channel 4",
+          "points": []
+        },
+        {
+          "name": "Channel 5",
+          "points": []
+        }
+      ]
+    }
+  ],
+  "active_mode_index": 0,
+  "version": "1.0",
+  "app": "TC420 Controller"
+}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#0f0f1a"/>
+    </linearGradient>
+    <linearGradient id="ch1" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#006688" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#00d4ff"/>
+    </linearGradient>
+    <linearGradient id="ch2" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#882222" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#ff6b6b"/>
+    </linearGradient>
+    <linearGradient id="ch3" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#228833" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#51cf66"/>
+    </linearGradient>
+    <linearGradient id="ch4" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#552288" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#be4bdb"/>
+    </linearGradient>
+    <linearGradient id="ch5" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#887722" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#ffd43b"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="128" cy="128" r="120" fill="url(#bg)" stroke="#2a2d5a" stroke-width="3"/>
+  <!-- Inner glow ring -->
+  <circle cx="128" cy="128" r="110" fill="none" stroke="#2a2d5a" stroke-width="0.5" opacity="0.5"/>
+  <!-- 5 LED bars with glow -->
+  <g filter="url(#glow)">
+    <!-- Channel 1 - Aqua -->
+    <rect x="48" y="65" width="20" height="130" rx="10" fill="url(#ch1)" opacity="0.9"/>
+    <circle cx="58" cy="70" r="6" fill="#00d4ff" opacity="0.8"/>
+    <!-- Channel 2 - Coral -->
+    <rect x="83" y="85" width="20" height="110" rx="10" fill="url(#ch2)" opacity="0.9"/>
+    <circle cx="93" cy="90" r="6" fill="#ff6b6b" opacity="0.8"/>
+    <!-- Channel 3 - Green -->
+    <rect x="118" y="55" width="20" height="140" rx="10" fill="url(#ch3)" opacity="0.9"/>
+    <circle cx="128" cy="60" r="6" fill="#51cf66" opacity="0.8"/>
+    <!-- Channel 4 - Violet -->
+    <rect x="153" y="75" width="20" height="120" rx="10" fill="url(#ch4)" opacity="0.9"/>
+    <circle cx="163" cy="80" r="6" fill="#be4bdb" opacity="0.8"/>
+    <!-- Channel 5 - Gold -->
+    <rect x="188" y="90" width="20" height="105" rx="10" fill="url(#ch5)" opacity="0.9"/>
+    <circle cx="198" cy="95" r="6" fill="#ffd43b" opacity="0.8"/>
+  </g>
+  <!-- Bottom line -->
+  <line x1="45" y1="200" x2="211" y2="200" stroke="#2a2d5a" stroke-width="2" stroke-linecap="round"/>
+  <!-- Text "TC420" -->
+  <text x="128" y="232" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#00d4ff">TC420</text>
+</svg>

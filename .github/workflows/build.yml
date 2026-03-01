@@ -1,0 +1,145 @@
+name: Build TC420 Controller
+
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  # ──────────────────────────────────
+  # Lint & Test
+  # ──────────────────────────────────
+  test:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libusb-1.0-0-dev libegl1
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install flake8
+
+      - name: Lint with flake8
+        run: |
+          # Stop build on syntax errors or undefined names
+          flake8 src/ main.py --count --select=E9,F63,F7,F82 --show-source --statistics
+          # Warnings (non-blocking)
+          flake8 src/ main.py --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
+
+      - name: Test models and serialization
+        run: |
+          python -c "
+          from src.models import *
+          from src.utils.file_io import save_program, load_program
+          import tempfile, os
+
+          # Test models
+          state = AppState()
+          assert len(state.modes) == 4
+          assert len(state.modes[0].channels) == 5
+
+          # Test add/remove points
+          ch = state.modes[0].channels[0]
+          ch.add_point(0, 0)
+          ch.add_point(720, 100)
+          ch.add_point(1439, 0)
+          assert len(ch.points) == 3
+          assert ch.get_brightness_at(360) == 50  # Interpolation
+
+          ch.remove_point(1)
+          assert len(ch.points) == 2
+
+          # Test save/load round-trip
+          with tempfile.NamedTemporaryFile(suffix='.tc420', delete=False) as f:
+              tmpfile = f.name
+
+          state2 = AppState()
+          state2.modes[0].name = 'Test Mode'
+          state2.modes[0].channels[0].add_point(100, 50)
+          state2.modes[0].channels[0].add_point(800, 90)
+          save_program(state2, tmpfile)
+          loaded = load_program(tmpfile)
+          assert loaded is not None
+          assert loaded.modes[0].name == 'Test Mode'
+          assert len(loaded.modes[0].channels[0].points) == 2
+          os.unlink(tmpfile)
+
+          print('✅ All tests passed!')
+          "
+
+  # ──────────────────────────────────
+  # Build .deb Package
+  # ──────────────────────────────────
+  build-deb:
+    name: Build .deb Package
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libusb-1.0-0-dev libegl1
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Build .deb package
+        run: bash build_deb.sh
+
+      - name: Upload .deb artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tc420-controller-deb
+          path: dist/*.deb
+          retention-days: 30
+
+  # ──────────────────────────────────
+  # Release (on tag push)
+  # ──────────────────────────────────
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: build-deb
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+    steps:
+      - name: Download .deb artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: tc420-controller-deb
+          path: dist/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.deb
+          generate_release_notes: true
+          draft: false
+          prerelease: false

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=TC420 Controller
+Comment=LED Programmable Controller for TC420 devices
+Comment[fr]=Contrôleur LED programmable pour appareils TC420
+Exec=tc420-controller
+Icon=tc420-controller
+Terminal=false
+Type=Application
+Categories=Utility;Electronics;
+Keywords=LED;controller;aquarium;TC420;light;
+StartupWMClass=tc420-controller
