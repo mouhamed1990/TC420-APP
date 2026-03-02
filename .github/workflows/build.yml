@@ -52,7 +52,7 @@ jobs:
 
           # Test models
           state = AppState()
-          assert len(state.modes) == NUM_MODES, f"Expected {NUM_MODES} modes, got {len(state.modes)}"
+          assert len(state.modes) == NUM_MODES, f'Expected {NUM_MODES} modes, got {len(state.modes)}'
           assert len(state.modes[0].channels) == 5
 
           # Test add/remove points
