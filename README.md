@@ -29,13 +29,15 @@ Le TC420 est un contrôleur LED USB programmable à 5 canaux, principalement uti
 
 - 🎨 **Éditeur de timeline 24h** — Interface visuelle avec courbes colorées, points glissables et interpolation lisse
 - 📊 **5 canaux indépendants** — Chaque canal a sa propre couleur (Aqua, Coral, Lime, Violet, Or)
-- 🔄 **4 modes programmables** — Comme le logiciel original TC420App
+- 🔄 **Jusqu'à 50 modes programmables** — Gérez jusqu'à un mois complet de programmes journaliers (comme le logiciel original TC420App)
+- 📥 **Import XML (PLED)** — Chargez directement les fichiers `.xml` exportés depuis TC420App Windows, avec sélection intelligente des modes
 - 🎚️ **Contrôle manuel** — Sliders pour ajuster la luminosité en temps réel
-- 💾 **Sauvegarde/Chargement** — Programmes exportés en `.tc420` (JSON)
-- 🔌 **Connexion USB** — Communication HID directe avec le TC420
+- 💾 **Sauvegarde/Chargement** — Programmes exportés en `.tc420` (JSON) ou importés depuis `.xml`
+- 🔌 **Connexion USB** — Communication HID directe avec le TC420 (protocole binaire complet)
 - 🌙 **Mode simulation** — Fonctionne sans matériel connecté pour tester et préparer des programmes
 - 🖥️ **Thème sombre premium** — Interface moderne avec glassmorphisme et micro-animations
 - ⏱️ **Synchronisation horaire** — Sync l'horloge du TC420 avec votre PC
+- 📋 **Historique des envois** — Onglet dédié affichant chaque upload (date, modes, succès/échec) persisté dans `~/.tc420_upload_log.json`
 
 ## Captures d'écran
 
@@ -105,14 +107,14 @@ TC420 Controller/
 │   ├── app.py                       # Configuration QApplication + thème
 │   ├── main_window.py               # Fenêtre principale
 │   ├── device_manager.py            # Communication USB HID
-│   ├── models.py                    # Modèles de données
+│   ├── models.py                    # Modèles de données (50 modes, 5 canaux)
 │   ├── widgets/
 │   │   ├── timeline_editor.py       # Éditeur de timeline 24h
 │   │   ├── channel_controls.py      # Sliders de contrôle manuel
 │   │   ├── connection_panel.py      # Panneau de connexion
-│   │   └── toolbar.py               # Barre d'outils + sélecteur de mode
+│   │   └── toolbar.py               # Barre d'outils + sélecteur de mode (ComboBox)
 │   └── utils/
-│       ├── file_io.py               # Sauvegarde/chargement fichiers
+│       ├── file_io.py               # Sauvegarde/chargement (.tc420 JSON + .xml PLED)
 │       └── theme.py                 # Thème sombre CSS
 └── .github/
     └── workflows/
@@ -121,7 +123,7 @@ TC420 Controller/
 
 ## Construction du .deb
 
-Le script `build_deb.sh` utilise **PyInstaller** pour créer un exécutable standalone, puis le package dans un `.deb` :
+Le script `build_deb.sh` utilise **PyInstaller** (depuis le virtualenv) pour créer un exécutable standalone, puis le package dans un `.deb` :
 
 ```bash
 # Depuis le virtualenv
@@ -131,6 +133,8 @@ pip install pyinstaller
 # Construire le .deb
 bash build_deb.sh
 ```
+
+> **Note :** Le script utilise automatiquement le Python du virtualenv `.venv/`. Assurez-vous que `.venv/` existe et contient les dépendances avant de lancer la construction.
 
 Le fichier `.deb` se trouve dans `dist/tc420-controller_1.0_amd64.deb`.
 
@@ -152,6 +156,16 @@ Le fichier `.deb` se trouve dans `dist/tc420-controller_1.0_amd64.deb`.
 - **Glisser** un point : modifier l'heure et la luminosité
 - **Clic droit** sur un point : supprimer
 - Cliquer sur un **canal** dans la barre du bas pour le sélectionner
+
+### Sélection de mode
+
+Utilisez la **liste déroulante Mode** en haut de l'interface pour basculer entre les jusqu'à 50 modes programmables. Chaque mode représente une journée complète indépendante.
+
+### Chargement de fichiers
+
+- Cliquez sur **📂 Ouvrir** — le dialogue affiche par défaut **tous les formats supportés** (`.tc420`, `.xml`, `.json`)
+- **.tc420** : format natif de l'application (JSON)
+- **.xml** : fichiers PLED exportés depuis TC420App Windows — un dialogue de sélection vous permet de choisir les modes à importer
 
 ### Connexion USB
 
@@ -182,7 +196,7 @@ sudo adduser $USER plugdev
 
 ### Formats de fichiers
 
-Les programmes sont sauvegardés en `.tc420` (JSON). Exemple :
+#### Format natif `.tc420` (JSON)
 
 ```json
 {
@@ -205,6 +219,10 @@ Les programmes sont sauvegardés en `.tc420` (JSON). Exemple :
   ]
 }
 ```
+
+#### Format XML PLED (compatible TC420App Windows)
+
+L'application supporte l'import direct des fichiers `.xml` générés par TC420App. Jusqu'à 31 modes (un par jour) peuvent être présents dans un fichier XML. Lors de l'import, un dialogue vous permet de sélectionner les modes à charger.
 
 ## GitHub Actions CI/CD
 

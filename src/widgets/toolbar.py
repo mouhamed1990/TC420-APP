@@ -57,8 +57,10 @@ class ToolBar(QFrame):
         layout.addWidget(sep1)
 
         # Device operations
-        self.download_btn = QPushButton("📥 Lire Appareil")
-        self.download_btn.setToolTip("Lire le programme depuis le TC420")
+        self.download_btn = QPushButton("ℹ️ Infos appareil")
+        self.download_btn.setToolTip(
+            "Le TC420 est en écriture seule — impossible de relire les programmes depuis l'appareil"
+        )
         self.download_btn.setEnabled(False)
         self.download_btn.clicked.connect(self.download_clicked.emit)
         layout.addWidget(self.download_btn)
@@ -92,72 +94,79 @@ class ToolBar(QFrame):
 
 
 class ModeSelector(QWidget):
-    """Mode tab selector (Mode 1-4)."""
+    """Mode tab selector (Supports up to 50 modes)."""
 
     mode_changed = pyqtSignal(int)
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self._active_mode = 0
+        from PyQt6.QtWidgets import QComboBox
         self._init_ui()
 
     def _init_ui(self):
+        from PyQt6.QtWidgets import QComboBox
         layout = QHBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
-        layout.setSpacing(4)
+        layout.setSpacing(8)
 
         label = QLabel("Mode:")
         label.setStyleSheet("color: #9090b0; font-weight: 600; font-size: 13px; background: transparent;")
         layout.addWidget(label)
 
-        self._buttons: list[QPushButton] = []
-        for i in range(4):
-            btn = QPushButton(f"Mode {i + 1}")
-            btn.setCheckable(True)
-            btn.setChecked(i == 0)
-            btn.setFixedHeight(32)
-            btn.clicked.connect(lambda _, idx=i: self._on_mode_clicked(idx))
-            self._buttons.append(btn)
-            layout.addWidget(btn)
-
-        self._update_styles()
+        self.combo = QComboBox()
+        self.combo.setFixedHeight(32)
+        self.combo.setMinimumWidth(150)
+        self.combo.setStyleSheet("""
+            QComboBox {
+                background-color: #16213e;
+                border: 1px solid #2a2d5a;
+                color: #e8e8f0;
+                border-radius: 6px;
+                padding: 4px 12px;
+                font-size: 13px;
+                font-weight: 600;
+            }
+            QComboBox::drop-down {
+                border: none;
+                width: 24px;
+            }
+            QComboBox::down-arrow {
+                image: none;
+                width: 0;
+                height: 0;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 5px solid #00d4ff;
+                margin-right: 8px;
+            }
+            QComboBox QAbstractItemView {
+                background-color: #1a1a2e;
+                border: 1px solid #2a2d5a;
+                color: #e8e8f0;
+                selection-background-color: #0099cc;
+                selection-color: white;
+            }
+        """)
+        
+        self.combo.currentIndexChanged.connect(self._on_mode_clicked)
+        layout.addWidget(self.combo)
         layout.addStretch()
 
-    def _on_mode_clicked(self, index: int):
-        self._active_mode = index
-        for i, btn in enumerate(self._buttons):
-            btn.setChecked(i == index)
-        self._update_styles()
-        self.mode_changed.emit(index)
+    def populate_modes(self, mode_names: list[str]):
+        """Populate the combo box with mode names."""
+        self.combo.blockSignals(True)
+        self.combo.clear()
+        self.combo.addItems(mode_names)
+        self.combo.setCurrentIndex(self._active_mode)
+        self.combo.blockSignals(False)
 
-    def _update_styles(self):
-        for i, btn in enumerate(self._buttons):
-            if i == self._active_mode:
-                btn.setStyleSheet("""
-                    QPushButton {
-                        background-color: #0099cc;
-                        border: 1px solid #00d4ff;
-                        color: white;
-                        font-weight: 700;
-                        border-radius: 8px;
-                        padding: 6px 20px;
-                    }
-                """)
-            else:
-                btn.setStyleSheet("""
-                    QPushButton {
-                        background-color: #16213e;
-                        border: 1px solid #2a2d5a;
-                        color: #9090b0;
-                        font-weight: 500;
-                        border-radius: 8px;
-                        padding: 6px 20px;
-                    }
-                    QPushButton:hover {
-                        background-color: #2a2d4a;
-                        color: #e8e8f0;
-                    }
-                """)
+    def _on_mode_clicked(self, index: int):
+        if index >= 0:
+            self._active_mode = index
+            self.mode_changed.emit(index)
 
     def set_active_mode(self, index: int):
-        self._on_mode_clicked(index)
+        if index >= 0 and index < self.combo.count():
+            self._active_mode = index
+            self.combo.setCurrentIndex(index)

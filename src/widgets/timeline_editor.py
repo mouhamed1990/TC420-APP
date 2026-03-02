@@ -58,6 +58,14 @@ class TimelineCanvas(QWidget):
 
     def set_mode_program(self, program: ModeProgram):
         self._mode_program = program
+        # Reset all interaction state — stale indices from the previous mode
+        # would cause IndexError on the new (possibly empty) mode.
+        self._dragging = False
+        self._drag_channel = -1
+        self._drag_point_idx = -1
+        self._hover_channel = -1
+        self._hover_point_idx = -1
+        self.setCursor(QCursor(Qt.CursorShape.CrossCursor))
         self.update()
 
     def set_channel_visible(self, channel: int, visible: bool):

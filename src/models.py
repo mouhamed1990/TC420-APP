@@ -114,7 +114,7 @@ CHANNEL_NAMES = [
 ]
 
 NUM_CHANNELS = 5
-NUM_MODES = 4
+NUM_MODES = 50
 
 
 @dataclass

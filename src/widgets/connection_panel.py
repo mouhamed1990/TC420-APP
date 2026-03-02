@@ -64,6 +64,24 @@ class ConnectionPanel(QFrame):
         self.device = device_manager
         self._init_ui()
 
+        # ── USB watchdog ──────────────────────────────────────────────────────
+        # Poll every 3 s to detect physical unplugging of the TC420.
+        # Only fires when genuinely connected to real hardware.
+        self._watchdog = QTimer(self)
+        self._watchdog.setInterval(3000)
+        self._watchdog.timeout.connect(self._watchdog_tick)
+        self._watchdog.start()
+
+    def _watchdog_tick(self):
+        """Check if TC420 is still physically connected and update UI if not."""
+        if not self.device.is_connected or self.device.is_mock:
+            return  # Nothing to probe
+        still_ok = self.device.check_connection()
+        if not still_ok:
+            self._update_ui(False, False)
+            self.connection_changed.emit(False)
+            self.status_message.emit("⚠️ TC420 débranché — connexion perdue")
+
     def _init_ui(self):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(16, 12, 16, 12)

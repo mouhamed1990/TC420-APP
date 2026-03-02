@@ -1,0 +1,909 @@
+<?xml version='1.0' encoding='utf-8'?>
+<modelist>
+	<mode name="01/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="7" minute="2" value="0"/>
+			<step hour="7" minute="12" value="3"/>
+			<step hour="7" minute="22" value="6"/>
+			<step hour="7" minute="32" value="10"/>
+			<step hour="18" minute="33" value="10"/>
+			<step hour="18" minute="43" value="6"/>
+			<step hour="18" minute="53" value="3"/>
+			<step hour="19" minute="3" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="02/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="7" minute="0" value="0"/>
+			<step hour="7" minute="10" value="3"/>
+			<step hour="7" minute="20" value="6"/>
+			<step hour="7" minute="30" value="10"/>
+			<step hour="18" minute="35" value="10"/>
+			<step hour="18" minute="45" value="6"/>
+			<step hour="18" minute="55" value="3"/>
+			<step hour="19" minute="5" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="03/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="58" value="0"/>
+			<step hour="7" minute="8" value="3"/>
+			<step hour="7" minute="18" value="6"/>
+			<step hour="7" minute="28" value="10"/>
+			<step hour="18" minute="37" value="10"/>
+			<step hour="18" minute="47" value="6"/>
+			<step hour="18" minute="57" value="3"/>
+			<step hour="19" minute="7" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="04/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="56" value="0"/>
+			<step hour="7" minute="6" value="3"/>
+			<step hour="7" minute="16" value="6"/>
+			<step hour="7" minute="26" value="10"/>
+			<step hour="18" minute="38" value="10"/>
+			<step hour="18" minute="48" value="6"/>
+			<step hour="18" minute="58" value="3"/>
+			<step hour="19" minute="8" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="05/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="54" value="0"/>
+			<step hour="7" minute="4" value="3"/>
+			<step hour="7" minute="14" value="6"/>
+			<step hour="7" minute="24" value="10"/>
+			<step hour="18" minute="40" value="10"/>
+			<step hour="18" minute="50" value="6"/>
+			<step hour="19" minute="0" value="3"/>
+			<step hour="19" minute="10" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="06/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="52" value="0"/>
+			<step hour="7" minute="2" value="3"/>
+			<step hour="7" minute="12" value="6"/>
+			<step hour="7" minute="22" value="10"/>
+			<step hour="18" minute="41" value="10"/>
+			<step hour="18" minute="51" value="6"/>
+			<step hour="19" minute="1" value="3"/>
+			<step hour="19" minute="11" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="07/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="50" value="0"/>
+			<step hour="7" minute="0" value="3"/>
+			<step hour="7" minute="10" value="6"/>
+			<step hour="7" minute="20" value="10"/>
+			<step hour="18" minute="43" value="10"/>
+			<step hour="18" minute="53" value="6"/>
+			<step hour="19" minute="3" value="3"/>
+			<step hour="19" minute="13" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="08/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="48" value="0"/>
+			<step hour="6" minute="58" value="3"/>
+			<step hour="7" minute="8" value="6"/>
+			<step hour="7" minute="18" value="10"/>
+			<step hour="18" minute="44" value="10"/>
+			<step hour="18" minute="54" value="6"/>
+			<step hour="19" minute="4" value="3"/>
+			<step hour="19" minute="14" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="09/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="46" value="0"/>
+			<step hour="6" minute="56" value="3"/>
+			<step hour="7" minute="6" value="6"/>
+			<step hour="7" minute="16" value="10"/>
+			<step hour="18" minute="46" value="10"/>
+			<step hour="18" minute="56" value="6"/>
+			<step hour="19" minute="6" value="3"/>
+			<step hour="19" minute="16" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="10/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="44" value="0"/>
+			<step hour="6" minute="54" value="3"/>
+			<step hour="7" minute="4" value="6"/>
+			<step hour="7" minute="14" value="10"/>
+			<step hour="18" minute="47" value="10"/>
+			<step hour="18" minute="57" value="6"/>
+			<step hour="19" minute="7" value="3"/>
+			<step hour="19" minute="17" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="11/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="42" value="0"/>
+			<step hour="6" minute="52" value="3"/>
+			<step hour="7" minute="2" value="6"/>
+			<step hour="7" minute="12" value="10"/>
+			<step hour="18" minute="49" value="10"/>
+			<step hour="18" minute="59" value="6"/>
+			<step hour="19" minute="9" value="3"/>
+			<step hour="19" minute="19" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="12/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="40" value="0"/>
+			<step hour="6" minute="50" value="3"/>
+			<step hour="7" minute="0" value="6"/>
+			<step hour="7" minute="10" value="10"/>
+			<step hour="18" minute="51" value="10"/>
+			<step hour="19" minute="1" value="6"/>
+			<step hour="19" minute="11" value="3"/>
+			<step hour="19" minute="21" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="13/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="38" value="0"/>
+			<step hour="6" minute="48" value="3"/>
+			<step hour="6" minute="58" value="6"/>
+			<step hour="7" minute="8" value="10"/>
+			<step hour="18" minute="52" value="10"/>
+			<step hour="19" minute="2" value="6"/>
+			<step hour="19" minute="12" value="3"/>
+			<step hour="19" minute="22" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="14/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="36" value="0"/>
+			<step hour="6" minute="46" value="3"/>
+			<step hour="6" minute="56" value="6"/>
+			<step hour="7" minute="6" value="10"/>
+			<step hour="18" minute="54" value="10"/>
+			<step hour="19" minute="4" value="6"/>
+			<step hour="19" minute="14" value="3"/>
+			<step hour="19" minute="24" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="15/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="34" value="0"/>
+			<step hour="6" minute="44" value="3"/>
+			<step hour="6" minute="54" value="6"/>
+			<step hour="7" minute="4" value="10"/>
+			<step hour="18" minute="55" value="10"/>
+			<step hour="19" minute="5" value="6"/>
+			<step hour="19" minute="15" value="3"/>
+			<step hour="19" minute="25" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="16/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="32" value="0"/>
+			<step hour="6" minute="42" value="3"/>
+			<step hour="6" minute="52" value="6"/>
+			<step hour="7" minute="2" value="10"/>
+			<step hour="18" minute="57" value="10"/>
+			<step hour="19" minute="7" value="6"/>
+			<step hour="19" minute="17" value="3"/>
+			<step hour="19" minute="27" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="17/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="30" value="0"/>
+			<step hour="6" minute="40" value="3"/>
+			<step hour="6" minute="50" value="6"/>
+			<step hour="7" minute="0" value="10"/>
+			<step hour="18" minute="58" value="10"/>
+			<step hour="19" minute="8" value="6"/>
+			<step hour="19" minute="18" value="3"/>
+			<step hour="19" minute="28" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="18/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="27" value="0"/>
+			<step hour="6" minute="37" value="3"/>
+			<step hour="6" minute="47" value="6"/>
+			<step hour="6" minute="57" value="10"/>
+			<step hour="19" minute="0" value="10"/>
+			<step hour="19" minute="10" value="6"/>
+			<step hour="19" minute="20" value="3"/>
+			<step hour="19" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="19/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="25" value="0"/>
+			<step hour="6" minute="35" value="3"/>
+			<step hour="6" minute="45" value="6"/>
+			<step hour="6" minute="55" value="10"/>
+			<step hour="19" minute="1" value="10"/>
+			<step hour="19" minute="11" value="6"/>
+			<step hour="19" minute="21" value="3"/>
+			<step hour="19" minute="31" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="20/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="23" value="0"/>
+			<step hour="6" minute="33" value="3"/>
+			<step hour="6" minute="43" value="6"/>
+			<step hour="6" minute="53" value="10"/>
+			<step hour="19" minute="3" value="10"/>
+			<step hour="19" minute="13" value="6"/>
+			<step hour="19" minute="23" value="3"/>
+			<step hour="19" minute="33" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="21/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="21" value="0"/>
+			<step hour="6" minute="31" value="3"/>
+			<step hour="6" minute="41" value="6"/>
+			<step hour="6" minute="51" value="10"/>
+			<step hour="19" minute="4" value="10"/>
+			<step hour="19" minute="14" value="6"/>
+			<step hour="19" minute="24" value="3"/>
+			<step hour="19" minute="34" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="22/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="19" value="0"/>
+			<step hour="6" minute="29" value="3"/>
+			<step hour="6" minute="39" value="6"/>
+			<step hour="6" minute="49" value="10"/>
+			<step hour="19" minute="6" value="10"/>
+			<step hour="19" minute="16" value="6"/>
+			<step hour="19" minute="26" value="3"/>
+			<step hour="19" minute="36" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="23/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="17" value="0"/>
+			<step hour="6" minute="27" value="3"/>
+			<step hour="6" minute="37" value="6"/>
+			<step hour="6" minute="47" value="10"/>
+			<step hour="19" minute="7" value="10"/>
+			<step hour="19" minute="17" value="6"/>
+			<step hour="19" minute="27" value="3"/>
+			<step hour="19" minute="37" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="24/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="15" value="0"/>
+			<step hour="6" minute="25" value="3"/>
+			<step hour="6" minute="35" value="6"/>
+			<step hour="6" minute="45" value="10"/>
+			<step hour="19" minute="9" value="10"/>
+			<step hour="19" minute="19" value="6"/>
+			<step hour="19" minute="29" value="3"/>
+			<step hour="19" minute="39" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="25/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="13" value="0"/>
+			<step hour="6" minute="23" value="3"/>
+			<step hour="6" minute="33" value="6"/>
+			<step hour="6" minute="43" value="10"/>
+			<step hour="19" minute="10" value="10"/>
+			<step hour="19" minute="20" value="6"/>
+			<step hour="19" minute="30" value="3"/>
+			<step hour="19" minute="40" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="26/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="11" value="0"/>
+			<step hour="6" minute="21" value="3"/>
+			<step hour="6" minute="31" value="6"/>
+			<step hour="6" minute="41" value="10"/>
+			<step hour="19" minute="12" value="10"/>
+			<step hour="19" minute="22" value="6"/>
+			<step hour="19" minute="32" value="3"/>
+			<step hour="19" minute="42" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="27/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="8" value="0"/>
+			<step hour="6" minute="18" value="3"/>
+			<step hour="6" minute="28" value="6"/>
+			<step hour="6" minute="38" value="10"/>
+			<step hour="19" minute="13" value="10"/>
+			<step hour="19" minute="23" value="6"/>
+			<step hour="19" minute="33" value="3"/>
+			<step hour="19" minute="43" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="28/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="6" value="0"/>
+			<step hour="6" minute="16" value="3"/>
+			<step hour="6" minute="26" value="6"/>
+			<step hour="6" minute="36" value="10"/>
+			<step hour="19" minute="15" value="10"/>
+			<step hour="19" minute="25" value="6"/>
+			<step hour="19" minute="35" value="3"/>
+			<step hour="19" minute="45" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="29/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="4" value="0"/>
+			<step hour="6" minute="14" value="3"/>
+			<step hour="6" minute="24" value="6"/>
+			<step hour="6" minute="34" value="10"/>
+			<step hour="19" minute="16" value="10"/>
+			<step hour="19" minute="26" value="6"/>
+			<step hour="19" minute="36" value="3"/>
+			<step hour="19" minute="46" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="30/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="2" value="0"/>
+			<step hour="6" minute="12" value="3"/>
+			<step hour="6" minute="22" value="6"/>
+			<step hour="6" minute="32" value="10"/>
+			<step hour="19" minute="18" value="10"/>
+			<step hour="19" minute="28" value="6"/>
+			<step hour="19" minute="38" value="3"/>
+			<step hour="19" minute="48" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<mode name="31/03">
+		<channel>
+			<step hour="0" minute="0" value="0"/>
+			<step hour="6" minute="0" value="0"/>
+			<step hour="6" minute="10" value="3"/>
+			<step hour="6" minute="20" value="6"/>
+			<step hour="6" minute="30" value="10"/>
+			<step hour="19" minute="19" value="10"/>
+			<step hour="19" minute="29" value="6"/>
+			<step hour="19" minute="39" value="3"/>
+			<step hour="19" minute="49" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+		<channel>
+			<step hour="8" minute="0" value="0"/>
+			<step hour="23" minute="30" value="0"/>
+		</channel>
+	</mode>
+	<channel_info>
+		<channel_info r="255" g="255" b="255"/>
+		<channel_info r="255" g="255" b="255"/>
+		<channel_info r="255" g="255" b="255"/>
+		<channel_info r="255" g="255" b="255"/>
+		<channel_info r="255" g="255" b="255"/>
+	</channel_info>
+</modelist>

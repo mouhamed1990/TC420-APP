@@ -3,18 +3,22 @@ Main Window — assembles all widgets into the application layout.
 """
 from PyQt6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter,
-    QStatusBar, QFileDialog, QMessageBox, QFrame, QLabel
+    QStatusBar, QFileDialog, QMessageBox, QFrame, QLabel,
+    QDialog, QListWidget, QDialogButtonBox, QAbstractItemView,
+    QProgressDialog, QTabWidget
 )
 from PyQt6.QtCore import Qt, QTimer
 from PyQt6.QtGui import QAction
 
 from src.device_manager import TC420DeviceManager
-from src.models import AppState
-from src.utils.file_io import save_program, load_program
+from src.models import AppState, NUM_MODES
+from src.utils.file_io import save_program, load_program, load_xml_mode_names, load_xml_program
+from src.utils.upload_log import log_upload
 from src.widgets.toolbar import ToolBar, ModeSelector
 from src.widgets.timeline_editor import TimelineEditor
 from src.widgets.channel_controls import ChannelControls
 from src.widgets.connection_panel import ConnectionPanel
+from src.widgets.log_panel import LogPanel
 
 
 class MainWindow(QMainWindow):
@@ -109,17 +113,57 @@ class MainWindow(QMainWindow):
         left_layout.addStretch()
         splitter.addWidget(left_panel)
 
-        # Center: Timeline + Channel controls
+        # Center: Tabs (Timeline | Log) + Channel controls
         center = QWidget()
         center_layout = QVBoxLayout(center)
         center_layout.setContentsMargins(0, 0, 0, 0)
         center_layout.setSpacing(8)
 
-        # Timeline editor (takes most space)
-        self.timeline = TimelineEditor()
-        center_layout.addWidget(self.timeline, 3)
+        # Tab widget
+        self.tabs = QTabWidget()
+        self.tabs.setStyleSheet("""
+            QTabWidget::pane {
+                border: none;
+                background: transparent;
+            }
+            QTabBar::tab {
+                background: #16213e;
+                color: #9090b0;
+                border: 1px solid #2a2d5a;
+                border-bottom: none;
+                border-radius: 6px 6px 0 0;
+                padding: 6px 18px;
+                font-size: 13px;
+                font-weight: 600;
+                min-width: 140px;
+            }
+            QTabBar::tab:selected {
+                background: #1a1a2e;
+                color: #00d4ff;
+                border-bottom: 2px solid #00d4ff;
+            }
+            QTabBar::tab:hover:!selected {
+                background: #1e2040;
+                color: #e8e8f0;
+            }
+        """)
 
-        # Channel controls (bottom)
+        # Tab 1 — Timeline
+        timeline_tab = QWidget()
+        tl_layout = QVBoxLayout(timeline_tab)
+        tl_layout.setContentsMargins(0, 0, 0, 0)
+        tl_layout.setSpacing(0)
+        self.timeline = TimelineEditor()
+        tl_layout.addWidget(self.timeline)
+        self.tabs.addTab(timeline_tab, "📈  Timeline")
+
+        # Tab 2 — Upload Log
+        self.log_panel = LogPanel()
+        self.tabs.addTab(self.log_panel, "📋  Historique")
+
+        center_layout.addWidget(self.tabs, 3)
+
+        # Channel controls (always visible below tabs)
         self.channel_controls = ChannelControls()
         center_layout.addWidget(self.channel_controls)
 
@@ -160,6 +204,10 @@ class MainWindow(QMainWindow):
 
     def _update_timeline(self):
         """Update timeline editor with current mode's program."""
+        # Update combo box labels
+        mode_names = [m.name for m in self.app_state.modes]
+        self.mode_selector.populate_modes(mode_names)
+        
         mode = self.app_state.active_mode
         self.timeline.set_mode_program(mode)
         self._update_program_info()
@@ -209,46 +257,252 @@ class MainWindow(QMainWindow):
     def _load_file(self):
         filepath, _ = QFileDialog.getOpenFileName(
             self, "Ouvrir un programme",
-            "", "TC420 Programme (*.tc420);;JSON (*.json);;Tous les fichiers (*)"
+            "",
+            "Tous les programmes supportés (*.tc420 *.xml *.json);;"
+            "TC420 Programme (*.tc420);;"
+            "XML PLED (*.xml);;"
+            "JSON (*.json);;"
+            "Tous les fichiers (*)"
         )
-        if filepath:
+        if not filepath:
+            return
+
+        if filepath.lower().endswith('.xml'):
+            self._load_xml_file(filepath)
+        else:
             state = load_program(filepath)
             if state:
-                self.app_state = state
-                self._current_file = filepath.split('/')[-1]
-                self._update_timeline()
-                self.mode_selector.set_active_mode(state.active_mode_index)
-                self._show_status(f"Programme chargé: {self._current_file}")
+                self._apply_loaded_state(state, filepath)
             else:
                 QMessageBox.critical(
                     self, "Erreur",
                     "Impossible de charger le fichier. Format invalide."
                 )
 
+    def _load_xml_file(self, filepath: str):
+        """Load an XML PLED file with mode selection dialog."""
+        mode_names = load_xml_mode_names(filepath)
+        if not mode_names:
+            QMessageBox.critical(
+                self, "Erreur",
+                "Impossible de lire le fichier XML ou aucun mode trouvé."
+            )
+            return
+
+        # Show mode selection dialog
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Sélectionner les modes à importer")
+        dialog.setMinimumSize(400, 500)
+        dialog.setStyleSheet("""
+            QDialog {
+                background-color: #1a1a2e;
+                color: #e8e8f0;
+            }
+            QLabel {
+                color: #e8e8f0;
+                font-size: 13px;
+                background: transparent;
+            }
+            QListWidget {
+                background-color: #16213e;
+                color: #e8e8f0;
+                border: 1px solid #2a2d5a;
+                border-radius: 6px;
+                padding: 4px;
+                font-size: 13px;
+            }
+            QListWidget::item {
+                padding: 6px 8px;
+                border-radius: 4px;
+            }
+            QListWidget::item:selected {
+                background-color: #0099cc;
+                color: white;
+            }
+            QListWidget::item:hover {
+                background-color: #2a2d4a;
+            }
+            QPushButton {
+                background-color: #0099cc;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                padding: 8px 20px;
+                font-weight: 600;
+            }
+            QPushButton:hover {
+                background-color: #00b8e6;
+            }
+            QPushButton:disabled {
+                background-color: #2a2d5a;
+                color: #606080;
+            }
+        """)
+
+        layout = QVBoxLayout(dialog)
+        layout.setSpacing(12)
+        layout.setContentsMargins(16, 16, 16, 16)
+
+        info_label = QLabel(
+            f"Le fichier contient {len(mode_names)} modes.\n"
+            f"Sélectionnez jusqu'à {NUM_MODES} modes à charger (Ctrl+clic pour multi-sélection):"
+        )
+        info_label.setWordWrap(True)
+        layout.addWidget(info_label)
+
+        mode_list = QListWidget()
+        mode_list.setSelectionMode(QAbstractItemView.SelectionMode.ExtendedSelection)
+        for i, name in enumerate(mode_names):
+            mode_list.addItem(f"{i+1}. {name}")
+        layout.addWidget(mode_list)
+
+        warn_label = QLabel("")
+        warn_label.setStyleSheet("color: #ff6b6b; font-size: 12px; background: transparent;")
+        layout.addWidget(warn_label)
+
+        buttons = QDialogButtonBox(
+            QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
+        )
+        buttons.button(QDialogButtonBox.StandardButton.Ok).setText("Importer")
+        buttons.button(QDialogButtonBox.StandardButton.Cancel).setText("Annuler")
+        buttons.accepted.connect(dialog.accept)
+        buttons.rejected.connect(dialog.reject)
+        layout.addWidget(buttons)
+
+        def on_selection_changed():
+            count = len(mode_list.selectedItems())
+            if count > NUM_MODES:
+                warn_label.setText(f"⚠ Maximum {NUM_MODES} modes ! Seuls les {NUM_MODES} premiers seront importés.")
+            elif count == 0:
+                warn_label.setText("")
+            else:
+                warn_label.setText(f"✓ {count} mode(s) sélectionné(s)")
+                warn_label.setStyleSheet("color: #51cf66; font-size: 12px; background: transparent;")
+
+        mode_list.itemSelectionChanged.connect(on_selection_changed)
+
+        # Pre-select first mode
+        if mode_names:
+            mode_list.item(0).setSelected(True)
+
+        if dialog.exec() != QDialog.DialogCode.Accepted:
+            return
+
+        selected = [mode_list.row(item) for item in mode_list.selectedItems()]
+        if not selected:
+            return
+
+        state = load_xml_program(filepath, selected[:NUM_MODES])
+        if state:
+            self._apply_loaded_state(state, filepath)
+        else:
+            QMessageBox.critical(
+                self, "Erreur",
+                "Erreur lors de l'import du fichier XML."
+            )
+
+    def _apply_loaded_state(self, state: AppState, filepath: str):
+        """Apply a loaded state to the app."""
+        self.app_state = state
+        self._current_file = filepath.split('/')[-1]
+        self._update_timeline()
+        self.mode_selector.set_active_mode(state.active_mode_index)
+        self._show_status(f"Programme chargé: {self._current_file}")
+
     def _upload_program(self):
         if not self.device.is_connected:
             self._show_status("Aucun appareil connecté!")
             return
 
+        # Ask which modes to send
+        non_empty = [
+            (i, m) for i, m in enumerate(self.app_state.modes)
+            if any(len(ch.points) > 0 for ch in m.channels)
+        ]
+
+        if not non_empty:
+            # Switch to timeline tab so user can see where to add points
+            self.tabs.setCurrentIndex(0)
+            QMessageBox.information(
+                self, "Aucun programme à envoyer",
+                "📭  Aucun mode ne contient de points de contrôle.\n\n"
+                "Pour envoyer un programme au TC420, vous devez d'abord :\n\n"
+                "  1️⃣  Charger un fichier XML (📂 Ouvrir → fichier .xml)\n"
+                "       — ou —\n"
+                "  2️⃣  Créer un programme manuellement :\n"
+                "       • Sélectionnez un Mode dans la liste déroulante\n"
+                "       • Cliquez sur la timeline pour ajouter des points\n"
+                "       • Répétez pour chaque mode / journée souhaité(e)\n\n"
+                "💾  Pensez à sauvegarder vos programmes (💾 Sauvegarder) !"
+            )
+            return
+
+        # Confirm
+        mode_list_str = "\n".join(
+            f"  • Mode {i+1}: {m.name}" for i, m in non_empty
+        )
         reply = QMessageBox.question(
-            self, "Envoyer le programme",
-            f"Envoyer le programme actuel (Mode {self.app_state.active_mode_index + 1}) vers le TC420?",
+            self, "Envoyer les programmes",
+            f"Envoyer {len(non_empty)} mode(s) vers le TC420 ?\n\n{mode_list_str}\n\n"
+            f"⚠️  Cela effacera TOUS les programmes existants sur l'appareil.",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
+        if reply != QMessageBox.StandardButton.Yes:
+            return
 
-        if reply == QMessageBox.StandardButton.Yes:
-            mode = self.app_state.active_mode
-            success, msg = self.device.upload_program(
-                self.app_state.active_mode_index, mode
-            )
+        # Progress dialog
+        progress = QProgressDialog("Envoi en cours…", None, 0, 100, self)
+        progress.setWindowTitle("TC420 — Envoi du programme")
+        progress.setWindowModality(Qt.WindowModality.WindowModal)
+        progress.setMinimumDuration(0)
+        progress.setValue(0)
+        progress.show()
+
+        def on_progress(done, total, label):
+            pct = int(done / max(total, 1) * 100)
+            progress.setLabelText(label)
+            progress.setValue(pct)
+            from PyQt6.QtCore import QCoreApplication
+            QCoreApplication.processEvents()
+
+        modes_to_send = [m for _, m in non_empty]
+        success, msg = self.device.upload_program(modes_to_send, progress_cb=on_progress)
+        progress.close()
+
+        # ── log the result ──────────────────────────────────────────────────
+        batch_name = ", ".join(m.name[:12] for m in modes_to_send[:3])
+        if len(modes_to_send) > 3:
+            batch_name += f" +{len(modes_to_send)-3}"
+        entry = log_upload(
+            mode_name=batch_name,
+            success=success,
+            message=msg,
+            n_modes=len(modes_to_send),
+        )
+        self.log_panel.add_entry_live(entry)
+        # Switch to log tab so user sees the result
+        self.tabs.setCurrentIndex(1)
+        # ────────────────────────────────────────────────────────────────────
+
+        if success:
+            QMessageBox.information(self, "Succès", msg)
             self._show_status(msg)
-
-            if success:
-                # Also set the active mode on device
-                self.device.set_active_mode(self.app_state.active_mode_index)
+        else:
+            QMessageBox.critical(self, "Erreur", msg)
+            self._show_status(f"Erreur: {msg}")
 
     def _download_program(self):
-        self._show_status("Lecture du programme en cours... (simulation)")
+        """TC420 does not support reading programs back via USB."""
+        QMessageBox.information(
+            self,
+            "Lecture non supportée",
+            "Le TC420 ne supporte pas la lecture des programmes via USB.\n\n"
+            "L'appareil est en écriture seule : vous pouvez envoyer des programmes "
+            "vers le TC420, mais il n'est pas possible de les relire depuis le PC.\n\n"
+            "💡 Conseil : sauvegardez vos programmes dans l'application "
+            "(💾 Sauvegarder) pour les conserver et les recharger ultérieurement."
+        )
+        self._show_status("Lecture non supportée par le TC420")
 
     def _run_demo(self):
         """Run a quick demo on the channel sliders."""
